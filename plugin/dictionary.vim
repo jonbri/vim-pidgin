@@ -6,12 +6,14 @@ if exists("g:loaded_dictionary") || &cp || v:version < 700
 endif
 let g:loaded_dictionary = 1
 
-let s:dictionaryPath=fnamemodify(resolve(expand('<sfile>:p:h')), ':h').'/words.txt'
-
+" k -> scan the files given with the 'dictionary' option
 setlocal complete+=k
 
+" scan the runtimepath for files that have the `.dictionary` suffix
+" and append them to the `dictionary` setting
 function! LoadDictionary()
-  execute 'setlocal dictionary+='.s:dictionaryPath
+  let dictionaryPath=join(split(globpath(&rtp, '**/*.dictionary')), ',')
+  execute 'setlocal dictionary+='.dictionaryPath
 endfunction
 
 autocmd BufEnter * :call LoadDictionary()
