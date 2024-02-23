@@ -1,0 +1,28 @@
+*pidgin.txt*
+
+Author:  Jonathan Brink
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *pidgin*
+
+Dictionary helpers.
+
+At startup, words found in rtp/**/*.dictionary files are added to the internal word list.
+This includes those words in the spellchecker (:set spell).
+
+At buffer entry, rtp/**/*.dictionary files are added to the internal word list (:spellgood).
+This includes those words in auto-complete.
+
+                                                *:LoadSpelling*
+Improves spellchecker
+
+                                                *:LoadDictionary*
+Improves auto-complete
+
+ABOUT                                           *pidgin-about*
+
+Grab the latest version or report a bug on GitHub:
+
+https://github.com/jonbri/vim-pidgin
+
+ vim:tw=78:et:ft=help:norl:

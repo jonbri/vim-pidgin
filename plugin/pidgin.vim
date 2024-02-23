@@ -9,16 +9,11 @@ let g:loaded_pidgin = 1
 " k -> scan the files given with the 'dictionary' option
 setlocal complete+=k
 
-" scan the runtimepath for files that have the `.dictionary` suffix
-" and append them to the `dictionary` setting
-function! LoadDictionary()
-  let dictionaryPath=join(split(globpath(&rtp, '**/*.dictionary')), ',')
-  execute 'setlocal dictionary+='.dictionaryPath
-endfunction
-
+" improve auto-completion
 function! LoadSpelling()
   let paths=split(globpath(&rtp, '**/*.dictionary'))
   for path in paths
+    " use the built-in dictionary for standard words
     if path =~ "standard.dictionary"
       continue
     endif
@@ -28,10 +23,18 @@ function! LoadSpelling()
   endfor
 endfunction
 
-" when vim first starts up
+" improve spell checking
+function! LoadDictionary()
+  let paths=split(globpath(&rtp, '**/*.dictionary'))
+  let dictionaryPath=join(paths, ',')
+  execute 'setlocal dictionary+='.dictionaryPath
+endfunction
+
+" only at startup
 call LoadSpelling()
 
+" when a new buffer is entered
 autocmd BufEnter * :call LoadDictionary()
 
-command! -nargs=0 LoadDictionary call LoadDictionary()
 command! -nargs=0 LoadSpelling call LoadSpelling()
+command! -nargs=0 LoadDictionary call LoadDictionary()
