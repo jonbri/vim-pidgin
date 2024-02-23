@@ -16,4 +16,20 @@ function! LoadDictionary()
   execute 'setlocal dictionary+='.dictionaryPath
 endfunction
 
+function! LoadSpelling()
+  let paths=split(globpath(&rtp, '**/*.dictionary'))
+  for path in paths
+    if path =~ "standard.dictionary"
+      continue
+    endif
+
+    for word in readfile(path)
+      execute "silent spellgood!" . word
+    endfor
+  endfor
+endfunction
+
 autocmd BufEnter * :call LoadDictionary()
+
+command! -nargs=0 LoadDictionary call LoadDictionary()
+command! -nargs=0 LoadSpelling call LoadSpelling()
