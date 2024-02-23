@@ -22,12 +22,14 @@ function! LoadSpelling()
     if path =~ "standard.dictionary"
       continue
     endif
-
     for word in readfile(path)
       execute "silent spellgood!" . word
     endfor
   endfor
 endfunction
+
+" when vim first starts up
+call LoadSpelling()
 
 autocmd BufEnter * :call LoadDictionary()
 
