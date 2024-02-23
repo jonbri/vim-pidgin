@@ -1,10 +1,10 @@
-" dictionary.vim - include custom words in Vim's auto-complete
+" pidgin.vim
 
 " don't load twice
-if exists("g:loaded_dictionary") || &cp || v:version < 700
+if exists("g:loaded_pidgin") || &cp || v:version < 700
   finish
 endif
-let g:loaded_dictionary = 1
+let g:loaded_pidgin = 1
 
 " k -> scan the files given with the 'dictionary' option
 setlocal complete+=k

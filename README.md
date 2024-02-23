@@ -1,4 +1,4 @@
-# vim-dictionary
+# vim-pidgin
 
 Add dictionary files to the [dictionary](http://vimdoc.sourceforge.net/htmldoc/options.html#'dictionary') setting by creating a file within your `.vim` directory.
 
